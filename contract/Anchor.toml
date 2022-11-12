@@ -1,0 +1,14 @@
+[features]
+seeds = false
+[programs.devnet]
+staking = "F4YRJBSzgvhPx8SAbLG7UpDiu581Vty78dK6fN5u9McA"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "devnet"
+wallet = "/home/eric/.config/solana/id.json"
+
+[scripts]
+test = "yarn run mocha -t 1000000 tests/"

@@ -1,0 +1,186 @@
+{
+    "version": "0.1.0",
+    "name": "staking",
+    "instructions": [
+      {
+        "name": "initializeValut",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "vaultAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "rent",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "stakeNft",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "vaultAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "nftMint",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "nftTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "systemProgram",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "rent",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [],
+        "returns": null
+      },
+      {
+        "name": "unstakeNft",
+        "accounts": [
+          {
+            "name": "owner",
+            "isMut": true,
+            "isSigner": true
+          },
+          {
+            "name": "nftMint",
+            "isMut": false,
+            "isSigner": false
+          },
+          {
+            "name": "nftTokenAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "vaultAccount",
+            "isMut": true,
+            "isSigner": false
+          },
+          {
+            "name": "tokenProgram",
+            "isMut": false,
+            "isSigner": false
+          }
+        ],
+        "args": [],
+        "returns": null
+      }
+    ],
+    "accounts": [
+      {
+        "name": "VaultAccount",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "totalStaked",
+              "type": "u32"
+            },
+            {
+              "name": "nftItemsStaked",
+              "type": {
+                "vec": {
+                  "defined": "NftItem"
+                }
+              }
+            },
+            {
+              "name": "bump",
+              "type": "u8"
+            }
+          ]
+        }
+      }
+    ],
+    "types": [
+      {
+        "name": "NftItem",
+        "type": {
+          "kind": "struct",
+          "fields": [
+            {
+              "name": "owner",
+              "type": "publicKey"
+            },
+            {
+              "name": "nftMint",
+              "type": "publicKey"
+            }
+          ]
+        }
+      }
+    ],
+    "errors": [
+      {
+        "code": 6000,
+        "name": "InvalidNFTMintSupply",
+        "msg": "The provider NFT Mint has a supply that isn't 1"
+      },
+      {
+        "code": 6001,
+        "name": "InvalidNFTOwner",
+        "msg": "The provider NFT token account is not owned by the providered owner"
+      },
+      {
+        "code": 6002,
+        "name": "InvalidNFTAccountMint",
+        "msg": "The provider NFT token account is not for the NFT mint"
+      },
+      {
+        "code": 6003,
+        "name": "NFTAccountEmpty",
+        "msg": "The provider NFT token account doesn't have te token"
+      },
+      {
+        "code": 6004,
+        "name": "InvalidVaultOwner",
+        "msg": "The provided NFT token account is not by owned vault account"
+      }
+    ],
+    "metadata": {
+        "address":"F4YRJBSzgvhPx8SAbLG7UpDiu581Vty78dK6fN5u9McA"
+    }
+  }
